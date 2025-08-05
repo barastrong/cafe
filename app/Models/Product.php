@@ -17,4 +17,8 @@ class Product extends Model
         'price',
         'stock',
     ];
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }
