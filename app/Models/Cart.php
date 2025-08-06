@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Cart extends Model
 {
     use HasFactory;
-
     protected $table = 'carts';
     protected $fillable = [
         'user_id',
         'product_id',
         'quantity',
-        'total_price',
+        'price',
+    ];
+    protected $casts = [
+        'quantity' => 'integer',
+        'price' => 'decimal:2',
     ];
 
     public function user()
@@ -25,5 +28,10 @@ class Cart extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function calculateTotalPrice(): float
+    {
+        return $this->quantity * $this->price;
     }
 }

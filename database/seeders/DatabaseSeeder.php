@@ -13,10 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
+        $this->call([
+            MenuSeeder::class,
+        ]);
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'test@example.com',
+            'role' => 'admin',
         ]);
     }
 }

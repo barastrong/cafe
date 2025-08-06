@@ -14,4 +14,9 @@ class Menu extends Model
         'name',
         'slug',
     ];
+    
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

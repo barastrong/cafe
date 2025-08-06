@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('promo_id')->nullable()->constrained('promos')->onDelete('set null');
             $table->foreignId('cart_id')->constrained('carts')->onDelete('cascade');
-            $table->decimal('total_amount', 10, 2);
-            $table->string('status', ['pending', 'completed', 'cancelled'])->default('pending');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('customer_name');
+            $table->integer('quantity');
+            $table->decimal('subtotal', 15, 2);
+            $table->decimal('discount_amount', 15, 2)->default(0);
+            $table->decimal('grand_total', 15, 2);
+            $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }
