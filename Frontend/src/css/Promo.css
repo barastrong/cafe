@@ -1,0 +1,38 @@
+.promo-page {
+  padding: 6rem 2rem 4rem 2rem;
+  background: #f4f4f4;
+  text-align: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+.promo-page h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.promo-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.promo-card h3 {
+  color: #00d9ff;
+  margin-bottom: 1rem;
+}
