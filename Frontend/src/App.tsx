@@ -3,14 +3,16 @@ import Navbar from './components/navbar';
 import Home from './pages/Home';
 import Promo from './pages/Promo';
 import Shop from './pages/Shop';
-import './css/App.css';
+import Footer from './components/footer';
+import './App.css';
 
 const MainLayout = () => (
-  <div className="site-container">
+  <div className="site-container bg-[#4a372d]">
     <Navbar />
     <main className="content-wrap">
       <Outlet />
     </main>
+    <Footer />
   </div>
 );
 
