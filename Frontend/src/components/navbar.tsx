@@ -13,8 +13,8 @@ const Navbar: React.FC = () => {
   const activeLinkStyle = "bg-orange-500 text-white font-semibold rounded-md px-3 py-2 shadow-sm whitespace-nowrap";
 
   const navigationItems = [
-    { label: "Home", path: "/" },
-    { label: "Menu", path: "/menu" },
+    { label: "Beranda", path: "/" },
+    { label: "Daftar Menu", path: "/menu" },
     { label: "Promo", path: "/promo" },
     { label: "Event", path: "/event" },
     { label: "Tentang Kami", path: "/tentang-kami" },

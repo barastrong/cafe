@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaFacebookF, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import Logo from '../assets/Logo.png';
 
 const Footer: React.FC = () => {
@@ -19,7 +19,8 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold text-[#38251e] mb-5">Categories</h3>
             <ul className="space-y-3 text-gray-700">
-              <li><Link to="/menu" className="hover:text-orange-500 transition-colors">Menu</Link></li>
+              <li><Link to="/" className="hover:text-orange-500 transition-colors">Beranda</Link></li>
+              <li><Link to="/menu" className="hover:text-orange-500 transition-colors">Daftar Menu</Link></li>
               <li><Link to="/promo" className="hover:text-orange-500 transition-colors">Promo</Link></li>
               <li><Link to="/event" className="hover:text-orange-500 transition-colors">Event</Link></li>
               <li><Link to="/tentang-kami" className="hover:text-orange-500 transition-colors">Tentang Kami</Link></li>
@@ -30,21 +31,27 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-bold text-[#38251e] mb-5">Follow Us</h3>
             <ul className="space-y-4 text-gray-700">
               <li className="flex items-center space-x-3">
+                <FaEnvelope size={20} />
+                <a href="#" className="hover:text-orange-500 transition-colors">
+                  coffeshoptelkom@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
                 <FaInstagram size={20} />
-                <a href="mailto:coffeshop@gmail.com" className="hover:text-orange-500 transition-colors">
-                  Coffeshop@gmail.com
+                <a href="#" className="hover:text-orange-500 transition-colors">
+                  @coffeshoptelkom
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <FaFacebookF size={20} />
                 <a href="#" className="hover:text-orange-500 transition-colors">
-                  coffeshoptelkom
+                  @coffeshoptelkom
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <FaYoutube size={20} />
                 <a href="#" className="hover:text-orange-500 transition-colors">
-                  @coffeshoptelkom
+                  CoffeShopTelkom
                 </a>
               </li>
             </ul>

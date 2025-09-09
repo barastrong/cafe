@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaPlus } from 'react-icons/fa';
 import apiRoutes from '../routes/apiRoutes';
-import ProductCard from '../components/ProductCardPopuler';
 import NetworkError from '../components/NetworkError';
 import HeaderImage from '../assets/header.png';
 
@@ -21,6 +21,74 @@ interface Product {
   stock: number;
   menu: Menu;
 }
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const API_BASE_URL = 'http://127.0.0.1:8000';
+
+const SnackPopular: React.FC<ProductCardProps> = ({ product }) => {
+  return (
+    <div className="relative pt-16 group">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
+        <img
+          src={`${API_BASE_URL}/storage/${product.image}`}
+          alt={product.name}
+          className="w-44 h-44 object-cover drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+
+      <div className="relative bg-[#4a372d] rounded-3xl shadow-lg pt-35">
+        <div className="bg-white rounded-b-3xl px-5 py-4 text-center">
+          <h3 className="text-xl font-bold text-slate-800 truncate mb-4">
+            {product.name}
+          </h3>
+          <div className="flex justify-between items-center">
+            <p className="bg-[#4a372d] text-white text-lg font-semibold px-5 py-2 rounded-lg">
+              RP. {product.price.toLocaleString('id-ID')}
+            </p>
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-black rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-200 hover:scale-110 shadow-md">
+              <FaPlus size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DrinkPopular: React.FC<ProductCardProps> = ({ product }) => {
+  return (
+    <div className="relative pt-20">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
+        <img
+          src={`${API_BASE_URL}/storage/${product.image}`}
+          alt={product.name}
+          className="w-48 h-48 object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-110"
+        />
+      </div>
+
+      <div className="relative bg-[#EAE1D4] rounded-3xl shadow-lg pt-32 text-center">
+        <div className="bg-white rounded-b-3xl border-t border-gray-200 px-5 py-4">
+          <h3 className="text-xl font-bold text-slate-800 truncate mb-4">
+            {product.name}
+          </h3>
+
+          <div className="flex justify-between items-center">
+            <p className="bg-[#4a372d] text-[#FFFFFF] text-lg font-semibold px-5 py-2 rounded-full">
+              Rp. {product.price.toLocaleString('id-ID')}
+            </p>
+
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-black rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-200 hover:scale-110 shadow-md">
+              <FaPlus size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const HeroSection: React.FC = () => {
   return (
@@ -89,27 +157,34 @@ const Home: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const renderContent = () => {
-    if (isLoading) {
-      return <p className="text-center py-20 text-slate-400">Memuat produk...</p>;
-    }
+  const renderDrinkContent = () => {
+    if (isLoading) return <p className="text-center py-20 text-slate-400">Memuat minuman...</p>;
+    if (error === 'Network Error') return <NetworkError onRetry={fetchProducts} />;
+    if (error) return <p className="text-center py-20 text-red-400">{error}</p>;
 
-    if (error === 'Network Error') {
-      return <NetworkError onRetry={fetchProducts} />;
-    }
-
-    if (error) {
-      return <p className="text-center py-20 text-red-400">{error}</p>;
-    }
-
-    if (products.length === 0) {
-      return <p className="text-center py-20 text-slate-400">Belum ada produk yang tersedia.</p>;
-    }
+    const drinkProducts = products.filter(p => p.menu.name === 'Minuman');
+    if (drinkProducts.length === 0) return <p className="text-center py-20 text-slate-400">Belum ada produk minuman.</p>;
 
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-28">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {drinkProducts.map((product) => (
+          <DrinkPopular key={product.id} product={product} />
+        ))}
+      </div>
+    );
+  };
+
+  const renderSnackContent = () => {
+    if (isLoading) return <p className="text-center py-20 text-slate-600">Memuat makanan...</p>;
+    if (error) return null;
+
+    const snackProducts = products.filter(p => p.menu.name === 'Snack');
+    if (snackProducts.length === 0) return <p className="text-center py-20 text-slate-600">Belum ada produk makanan.</p>;
+
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16">
+        {snackProducts.map((product) => (
+          <SnackPopular key={product.id} product={product} />
         ))}
       </div>
     );
@@ -129,7 +204,7 @@ const Home: React.FC = () => {
               Bold and rich, your instant boost in every sip
             </p>
           </div>
-          {renderContent()}
+          {renderDrinkContent()}
         </div>
       </section>
 
@@ -141,6 +216,7 @@ const Home: React.FC = () => {
           <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
             From sweet to savory, the perfect partner for your coffee moments
           </p>
+          {renderSnackContent()}
         </div>
       </section>
 
