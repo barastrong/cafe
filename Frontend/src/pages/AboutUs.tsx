@@ -1,58 +1,74 @@
-import React from 'react';
-import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/swiper.css';
 
-import heroBgImage from '../assets/about-us/hero.png'
+import heroBgImage from '../assets/about-us/hero.png';
 const teamNabilaImage = '/path/to/your/assets/team-nabila.jpg';
-const teamDaniImage = '/path/to/your/assets/team-dani.jpg';
+import BaraImage from '../assets/about-us/Bintang Binjas.png';
 const teamSitiImage = '/path/to/your/assets/team-siti.jpg';
 const teamRianImage = '/path/to/your/assets/team-rian.jpg';
 const teamDewiImage = '/path/to/your/assets/team-dewi.jpg';
 
-const teamData = [
+interface TeamMember {
+  name: string;
+  status: string;
+  bio: string;
+  imageUrl: string;
+  social: {
+    instagram?: string;
+    twitter?: string;
+    linkedin?: string;
+    facebook?: string;
+  };
+}
+
+const teamData: TeamMember[] = [
   {
     name: 'Nabila Raisa',
-    status: 'Owner & Visionary',
+    status: 'Founder & Owner',
     bio: 'Nabila adalah otak dan hati di balik KatanyaCafe, memastikan setiap aspek kafe mencerminkan visi dan kecintaannya pada kopi berkualitas.',
     imageUrl: teamNabilaImage,
-    social: { instagram: '#', twitter: '#', linkedin: '#' },
-    isTop: true,
+    social: { instagram: '#', twitter:'#',  linkedin: '#', facebook:'#' },
   },
   {
-    name: 'Dani Ardian',
-    status: 'Web Developer',
-    bio: 'Dani adalah arsitek digital kami, membangun fondasi website yang kuat dan fungsional dari nol hingga menjadi pengalaman yang mulus.',
-    imageUrl: teamDaniImage,
-    social: { instagram: '#', twitter: '#', linkedin: '#' },
-    isTop: true,
+    name: 'Bintang Bara Adyasta',
+    status: 'Web Development',
+    bio: 'Bara adalah pengembang web andalan kami. Dengan kreativitas dan keahliannya, ia berhasil mengubah tampilan website menjadi lebih modern, responsif, dan menarik.',
+    imageUrl: BaraImage,
+    social: { instagram: '#', twitter: '#', linkedin: '#', facebook: '#' },
   },
   {
     name: 'Siti Amelia',
-    status: 'Frontend Developer',
+    status: 'Interface Artisan',
     bio: 'Siti mengubah desain menjadi antarmuka yang interaktif dan responsif, memastikan website kami terlihat indah di semua perangkat.',
     imageUrl: teamSitiImage,
-    social: { instagram: '#', twitter: '#', linkedin: '#' },
+    social: { instagram: '#', twitter: '#', linkedin: '#', facebook: '#' },
   },
   {
     name: 'Rian Prasetyo',
-    status: 'Backend Developer',
-    bio: 'Rian adalah mesin di balik layar, mengelola database, transaksi, dan semua logika server yang membuat website berjalan cepat dan aman.',
+    status: 'Logic Weaver',
+    bio: 'Rian adalah mesin di balik layar, mengelola database dan semua logika server yang membuat website berjalan cepat dan aman.',
     imageUrl: teamRianImage,
-    social: { instagram: '#', twitter: '#', linkedin: '#' },
+    social: { instagram: '#', twitter: '#', linkedin: '#', facebook:'#' },
   },
   {
     name: 'Dewi Lestari',
-    status: 'UI/UX Designer',
-    bio: 'Dewi adalah seniman visual kami, merancang setiap piksel dan alur pengguna untuk menciptakan pengalaman online yang intuitif dan memikat.',
+    status: 'Visual Storyteller',
+    bio: 'Dewi adalah seniman visual kami, merancang setiap piksel untuk menciptakan pengalaman online yang intuitif dan memikat.',
     imageUrl: teamDewiImage,
-    social: { instagram: '#', twitter: '#', linkedin: '#' },
+    social: { instagram: '#', twitter: '#', linkedin: '#', facebook:'#' },
   },
 ];
 
 const AboutUsPage: React.FC = () => {
+  const [featuredMember, setFeaturedMember] = useState<TeamMember>(teamData[0]);
+
+  const crewMembers = teamData.filter(member => member.name !== featuredMember.name);
+
+  const handleSelectMember = (member: TeamMember) => {
+    setFeaturedMember(member);
+  };
+
   return (
     <main className="bg-[#EDE4D5]">
       <section 
@@ -75,48 +91,58 @@ const AboutUsPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-[#4a372d] overflow-hidden" id="team-section">
-        <div className="container mx-auto">
-          <div className="text-center mb-16 px-6">
+      <section className="py-24 bg-[#4a372d]" id="team-section">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
               The <span className='text-[#FFA500]'>KatanyaCafe</span> Crafters
             </h2>
             <p className="mt-4 text-lg text-[#EDE4D5]">Hati dan jiwa di balik setiap cangkir.</p>
           </div>
-          <Swiper
-              modules={[Autoplay]}
-              spaceBetween={30}
-              slidesPerView={'auto'}
-              loop={true}
-              speed={5000}
-              allowTouchMove={false}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-              }}
-              className="[&_.swiper-wrapper]:!transition-timing-function-linear"
-            >
-              {[...teamData, ...teamData].map((member, index) => (
-                <SwiperSlide key={`${member.name}-${index}`} className="!w-auto pb-10 !h-auto">
-                  <div className="bg-[#EDE4D5] rounded-2xl p-8 text-center flex flex-col items-center shadow-lg w-80 h-full">
-                    <div className="relative">
-                      <img src={member.imageUrl} alt={member.name} className="w-32 h-32 rounded-full object-cover border-4 border-orange-400 mb-6" />
-                      { member.isTop && (
-                      <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full p-2 text-xs font-bold">TOP</div>
-                      )}
-                    </div>
-                    <h3 className="text-2xl font-bold text-slate-800">{member.name}</h3>
-                    <p className="text-orange-600 font-semibold mb-4">{member.status}</p>
-                    <p className="text-gray-600 text-sm flex-grow">{member.bio}</p>
-                    <div className="flex space-x-4 mt-6">
-                      <a href={member.social.instagram} className="text-gray-500 hover:text-[#E4405F]"><FaInstagram size={20} /></a>
-                      <a href={member.social.twitter} className="text-gray-500 hover:text-black"><FaXTwitter size={20} /></a>
-                      <a href={member.social.linkedin} className="text-gray-500 hover:text-[#0077B5]"><FaLinkedinIn size={20} /></a>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-          </Swiper>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center mb-20">
+            <div className="lg:col-span-1 flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full blur-xl opacity-70 transition-all duration-500"></div>
+                <img src={featuredMember.imageUrl} alt={featuredMember.name} className="relative w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-2xl transition-all duration-500" />
+              </div>
+            </div>
+            <div className="lg:col-span-2 text-center lg:text-left transition-all duration-500">
+              <h3 className="text-4xl font-bold text-white">{featuredMember.name}</h3>
+              <p className="text-2xl text-orange-400 font-semibold mt-1">{featuredMember.status}</p>
+              <p className="text-slate-300 mt-4 max-w-lg mx-auto lg:mx-0">{featuredMember.bio}</p>
+              <div className="flex justify-center lg:justify-start space-x-4 mt-6">
+                {featuredMember.social.instagram && ( 
+                <a href={featuredMember.social.instagram} className="text-slate-400 hover:text-[#E4405F]"><FaInstagram size={24} /></a>
+                )}
+                {featuredMember.social.facebook && ( 
+                <a href={featuredMember.social.facebook} className="text-slate-400 hover:text-[#1877F2]"><FaFacebookF size={24} /></a>
+                )}
+                {featuredMember.social.twitter && ( 
+                <a href={featuredMember.social.twitter} className="text-slate-400 hover:text-black"><FaXTwitter size={24} /></a>
+                )}
+                {featuredMember.social.linkedin && (
+                <a href={featuredMember.social.linkedin} className="text-slate-400 hover:text-[#0077B5]"><FaLinkedinIn size={24} /></a>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          <hr className="border-t-2 border-[#EDE4D5] my-16" />
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+            {crewMembers.map((member) => (
+              <div 
+                key={member.name} 
+                className="bg-[#3D312A] p-4 rounded-xl text-center flex flex-col items-center cursor-pointer group border-2 border-transparent hover:border-orange-500 transition-all duration-300"
+                onClick={() => handleSelectMember(member)}
+              >
+                <img src={member.imageUrl} alt={member.name} className="w-24 h-24 rounded-full object-cover border-2 border-slate-600 group-hover:border-orange-500 transition-all duration-300" />
+                <h4 className="text-lg font-bold text-white mt-4">{member.name}</h4>
+                <p className="text-orange-400 text-sm font-semibold">{member.status}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
