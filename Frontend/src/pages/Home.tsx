@@ -92,7 +92,7 @@ const DrinkPopular: React.FC<ProductCardProps> = ({ product }) => {
 
 const HeroSection: React.FC = () => {
   return (
-    <div className="w-full bg-[#4a372d] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto bg-[#EAE1D4] rounded-3xl shadow-xl relative">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="p-8 md:p-12 lg:p-16 relative z-10 text-center md:text-left">
@@ -158,12 +158,18 @@ const Home: React.FC = () => {
   }, []);
 
   const renderDrinkContent = () => {
-    if (isLoading) return <p className="text-center py-20 text-slate-400">Memuat minuman...</p>;
-    if (error === 'Network Error') return <NetworkError onRetry={fetchProducts} />;
-    if (error) return <p className="text-center py-20 text-red-400">{error}</p>;
+    if (isLoading) 
+      return 
+        <p className="text-center py-20 text-slate-400">Memuat minuman...</p>;
+    if (error === 'Network Error')  return <NetworkError onRetry={fetchProducts} />;
+    if (error) 
+      return 
+        <p className="text-center py-20 text-red-400">{error}</p>;
 
     const drinkProducts = products.filter(p => p.menu.name === 'Minuman');
-    if (drinkProducts.length === 0) return <p className="text-center py-20 text-slate-400">Belum ada produk minuman.</p>;
+    if (drinkProducts.length === 0) 
+      return 
+        <p className="text-center py-20 text-slate-400">Belum ada produk minuman.</p>;
 
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-28">
@@ -175,11 +181,18 @@ const Home: React.FC = () => {
   };
 
   const renderSnackContent = () => {
-    if (isLoading) return <p className="text-center py-20 text-slate-600">Memuat makanan...</p>;
-    if (error) return null;
+    if (isLoading) 
+      return 
+        <p className="text-center py-20 text-slate-600">Memuat makanan...</p>;
+    if (error === 'Network Error')  return <NetworkError onRetry={fetchProducts} />;
+    if (error) 
+      return 
+        <p className="text-center py-20 text-red-400">{error}</p>;
 
     const snackProducts = products.filter(p => p.menu.name === 'Snack');
-    if (snackProducts.length === 0) return <p className="text-center py-20 text-slate-600">Belum ada produk makanan.</p>;
+    if (snackProducts.length === 0) 
+      return 
+        <p className="text-center py-20 text-slate-600">Belum ada produk makanan.</p>;
 
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16">
@@ -198,7 +211,7 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              3 Top <span className="text-yellow-300">Coffe</span> Categories
+              3 Top <span className="text-[#ffbf00]">Coffe</span> Categories
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
               Bold and rich, your instant boost in every sip

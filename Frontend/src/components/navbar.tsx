@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     { label: "Daftar Menu", path: "/menu" },
     { label: "Promo", path: "/promo" },
     { label: "Event", path: "/event" },
-    { label: "Tentang Kami", path: "/tentang-kami" },
+    { label: "Tentang Kami", path: "/about-us" },
   ];
 
   return (

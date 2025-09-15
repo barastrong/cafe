@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Promo from './pages/Promo';
 import Shop from './pages/Shop';
 import Footer from './components/footer';
+import AboutUs from './pages/AboutUs';
 import './App.css';
 
 const MainLayout = () => (
@@ -24,6 +25,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="promo" element={<Promo />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="about-us" element={<AboutUs />} />
         </Route>
       </Routes>
     </BrowserRouter>
