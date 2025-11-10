@@ -26,7 +26,7 @@ const PromoPage: React.FC = () => {
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white">
             <span className="text-orange-400">Promos</span> for a great time
           </h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
+          <p className="mt-4 text-lg text-gray-300 max-w-2xl ">
             "Nikmati momen seru dengan penawaran spesial dan promo menarik dari kami. Lebih hemat, lebih menyenangkan!"
           </p>
         </section>

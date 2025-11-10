@@ -8,6 +8,7 @@ import BaraImage from '../assets/about-us/Bintang Binjas.png';
 const teamSitiImage = '/path/to/your/assets/team-siti.jpg';
 const teamRianImage = '/path/to/your/assets/team-rian.jpg';
 const teamDewiImage = '/path/to/your/assets/team-dewi.jpg';
+const teamBudiImage = '/path/to/your/assets/team-budi.jpg';
 
 interface TeamMember {
   name: string;
@@ -24,7 +25,7 @@ interface TeamMember {
 
 const teamData: TeamMember[] = [
   {
-    name: 'Nabila Raisa',
+    name: 'Nabila Raissa Evelyna',
     status: 'Founder & Owner',
     bio: 'Nabila adalah otak dan hati di balik KatanyaCafe, memastikan setiap aspek kafe mencerminkan visi dan kecintaannya pada kopi berkualitas.',
     imageUrl: teamNabilaImage,
@@ -38,25 +39,32 @@ const teamData: TeamMember[] = [
     social: { instagram: '#', twitter: '#', linkedin: '#', facebook: '#' },
   },
   {
-    name: 'Siti Amelia',
-    status: 'Interface Artisan',
+    name: 'Maudina Mey Nur Hidayah',
+    status: 'Web Desaign',
     bio: 'Siti mengubah desain menjadi antarmuka yang interaktif dan responsif, memastikan website kami terlihat indah di semua perangkat.',
     imageUrl: teamSitiImage,
     social: { instagram: '#', twitter: '#', linkedin: '#', facebook: '#' },
   },
   {
-    name: 'Rian Prasetyo',
-    status: 'Logic Weaver',
+    name: 'Habiburrasyid As Sabily',
+    status: 'Web Desaign',
     bio: 'Rian adalah mesin di balik layar, mengelola database dan semua logika server yang membuat website berjalan cepat dan aman.',
     imageUrl: teamRianImage,
     social: { instagram: '#', twitter: '#', linkedin: '#', facebook:'#' },
   },
   {
-    name: 'Dewi Lestari',
-    status: 'Visual Storyteller',
+    name: 'Muhammad Ikhsanul Haq',
+    status: 'Web Desaign',
     bio: 'Dewi adalah seniman visual kami, merancang setiap piksel untuk menciptakan pengalaman online yang intuitif dan memikat.',
     imageUrl: teamDewiImage,
     social: { instagram: '#', twitter: '#', linkedin: '#', facebook:'#' },
+  },
+  {
+    name: 'Juliansyah Putra Perdhana',
+    status: 'Nonaktif Sementara',
+    bio: 'Budi adalah penjamin kualitas rasa, memastikan setiap biji kopi dan bahan baku memenuhi standar tertinggi kami.',
+    imageUrl: teamBudiImage,
+    social: { instagram: '#', linkedin: '#' },
   },
 ];
 
@@ -128,9 +136,9 @@ const AboutUsPage: React.FC = () => {
             </div>
           </div>
           
-          <hr className="border-t-2 border-[#EDE4D5] my-16" />
+          <hr className="border-t-2 border-slate-600 my-16" />
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
             {crewMembers.map((member) => (
               <div 
                 key={member.name} 
@@ -154,7 +162,7 @@ const AboutUsPage: React.FC = () => {
           <button className="mt-8 bg-[#4a372d] text-white font-bold px-12 py-4 rounded-lg hover:bg-slate-800 transition-colors shadow-lg text-lg">
             Lihat Menu Kami
           </button>
-          </a>
+          </a>  
         </div>
       </section>
     </main>
