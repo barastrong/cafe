@@ -3,7 +3,6 @@ import Navbar from './components/navbar';
 import Home from './pages/Home';
 import Promo from './pages/Promo';
 import Menu from './pages/Menu';
-import Footer from './components/footer';
 import AboutUs from './pages/AboutUs';
 import OrderPage from './pages/Order'
 import './App.css';
@@ -14,7 +13,6 @@ const MainLayout = () => (
     <main className="flex-grow">
       <Outlet />
     </main>
-    <Footer />
   </div>
 );
 

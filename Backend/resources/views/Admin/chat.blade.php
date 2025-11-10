@@ -5,7 +5,7 @@
 
     <div id="conversation-sidebar" class="absolute top-0 left-0 h-full w-full sm:w-80 bg-gray-50 border-r md:rounded-l-xl flex flex-col z-30 transform -translate-x-full transition-transform duration-300 ease-in-out md:static md:w-1/4 md:flex md:translate-x-0">
         <div class="p-4 border-b flex justify-between items-center flex-shrink-0">
-            <h2 class="text-xl font-bold text-gray-800">Conversations</h2>
+            <h2 class="text-xl font-bold text-gray-800">Chat</h2>
             <button id="openModalBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold h-9 w-9 rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all" title="New Chat">
                 <i class="fa-solid fa-plus"></i>
             </button>
